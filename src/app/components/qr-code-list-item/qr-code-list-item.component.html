@@ -1,0 +1,17 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title-group>
+        <mat-card-title>{{title}}</mat-card-title>
+        <mat-card-subtitle>Qr Code Id: {{id | number: '3.0-0'}}</mat-card-subtitle>
+        <mat-icon mat-card-sm-icon fontIcon="qr_code_2"></mat-icon>
+        </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content>
+        {{desc}}
+    </mat-card-content>
+    <mat-card-actions align="end">
+        <button mat-mini-fab color="accent" (click)="onDeleteClick()">
+            <mat-icon>delete</mat-icon>
+        </button>
+      </mat-card-actions>
+</mat-card>

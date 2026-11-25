@@ -1,0 +1,32 @@
+<div class="container" id="print-section">
+    <div class="wrapper">
+        <b>GateKeepr: KSPA</b>
+        <qrcode
+        *ngIf="qrcText != ''"
+        [qrdata]="qrcText"
+        elementType="img"
+        [width]="306"
+        errorCorrectionLevel="H"
+        [margin]="0"
+        [cssClass]="'angularx-qrcode-component'">
+        </qrcode>
+        <!-- 81mm wide -->
+        <span>{{itemRefNo}}</span>
+    </div>
+    <button
+    *ngIf="!isPrintButtonHidden"
+    mat-mini-fab
+    color="accent"
+    class="print-fab"
+    (click)="print()">
+        <mat-icon>print</mat-icon>
+    </button>
+</div>
+<button #hiddenPrintButton
+class="hide"
+ngxPrint
+printTitle="GateKeepr: KSPA"
+printSectionId="print-section"
+[useExistingCss]="true">
+    print-btn-hidden
+</button>

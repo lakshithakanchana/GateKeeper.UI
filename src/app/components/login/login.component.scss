@@ -1,0 +1,36 @@
+mat-card-content {
+    display: flex;
+    flex-direction: column;
+}
+
+mat-card-header {
+    margin-bottom: 1rem;
+}
+
+mat-card {
+    min-width: 10rem;
+}
+
+.container {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+/* portrait tablets and large phones, 600px and up */
+@media only screen and (min-width: 560px) {
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    mat-card-content > mat-form-field {
+        width: 30rem;
+    }
+
+}
+
+.errors-summary-container, .loginForm {
+    margin-top: 3rem;
+}

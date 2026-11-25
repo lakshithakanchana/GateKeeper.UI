@@ -1,0 +1,21 @@
+.toolbar-spacer {
+    flex: 1 1 auto;
+}
+.mr-1 {
+    margin-right: 1rem;
+}
+.login-logout-button {
+    border-left: 2px solid transparent;
+    border-right: 2px solid transparent;
+}
+.login-logout-button:hover {
+    border-left: 2px solid white;
+    border-right: 2px solid white;
+}
+.primary-toolbar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+}

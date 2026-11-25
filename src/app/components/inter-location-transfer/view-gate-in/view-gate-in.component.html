@@ -1,0 +1,149 @@
+<div class="container">
+
+    <div class="gate-in-form">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>Gate In - View</mat-card-title>
+                <mat-card-subtitle>Inter Location Transfer</mat-card-subtitle>
+            </mat-card-header>
+        
+            <!-- Content here -->
+            <mat-card-content>
+
+                <div class="form-field-container">
+                    <mat-form-field>
+                        <mat-label>Gate In Id</mat-label>
+                        <input matInput type="text" readonly [value]="gateIn?.gateInId">
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Created User</mat-label>
+                        <input matInput type="text" readonly [value]="gateIn?.createdUser?.username">
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Created Time</mat-label>
+                        <input matInput type="datetime-local" readonly [value]="gateIn?.createdDateTime | date: 'yyyy-MM-ddTHH:mm:ss'">
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Company</mat-label>
+                        <input matInput type="text" readonly [value]="gateIn?.company?.companyName">
+                    </mat-form-field>
+    
+                    <mat-form-field>
+                        <mat-label>Location</mat-label>
+                        <input matInput type="text" readonly [value]="gateIn?.location?.locationName">
+                    </mat-form-field>
+    
+                    <mat-form-field>
+                        <mat-label>Item Ref.No / Reel No</mat-label>
+                        <input matInput type="text" readonly [value]="gateIn?.qrCode?.itemRefNo">
+                    </mat-form-field>
+    
+                    <mat-form-field>
+                        <mat-label>Transport Delay (minutes)</mat-label>
+                        <input matInput type="number" readonly [value]="transportDelay">
+                    </mat-form-field>
+                    
+                    <div class="download-form-field"></div>
+                    <div class="download-form-field"></div>
+                    <div class="download-form-field"></div>
+                    <div class="download-form-field"></div>
+                    <div class="download-form-field"></div>
+                    
+                </div>
+                
+                <div class="remarks-form-field-container">
+                    <mat-form-field class="remarks-form-field">
+                        <mat-label>Remarks</mat-label>
+                        <textarea matInput [value]="gateIn?.remarks"
+                        rows="2" readonly>
+                        </textarea>
+                    </mat-form-field>
+                </div>
+
+                <!--Gate Out Related Data-->
+                <mat-accordion class="accordination-headers-align">
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Gate Out Related Data (In-bound)
+                            </mat-panel-title>
+                            <mat-panel-description>
+                                <span class="hideAtMobileSSize">Expand to see more</span>
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+                
+                        <!--Form Fields Section-->
+                        <div class="form-field-container">
+
+                            <mat-form-field>
+                                <mat-label>Gt.Out Id</mat-label>
+                                <input matInput type="text" readonly [value]="gateIn?.gateOutId">
+                            </mat-form-field>
+            
+                            <mat-form-field>
+                                <mat-label>Received From</mat-label>
+                                <input matInput type="text" readonly [value]="gateIn?.gateOut?.fromLocation?.locationName">
+                            </mat-form-field>
+            
+                            <mat-form-field>
+                                <mat-label>Vehicle No</mat-label>
+                                <input matInput type="text" readonly [value]="gateIn?.gateOut?.vehicleNo">
+                            </mat-form-field>
+            
+                            <mat-form-field>
+                                <mat-label>Driver EPF No</mat-label>
+                                <input matInput type="text" readonly [value]="gateIn?.gateOut?.driverEpfNo">
+                            </mat-form-field>
+            
+                            <mat-form-field>
+                                <mat-label>Driver Name</mat-label>
+                                <input matInput type="text" readonly [value]="gateIn?.gateOut?.driverName">
+                            </mat-form-field>
+            
+                            <mat-form-field>
+                                <mat-label>Document Type</mat-label>
+                                <input matInput type="text" readonly [value]="gateIn?.gateOut?.documentType?.documentTypeName">
+                            </mat-form-field>
+            
+                            <mat-form-field>
+                                <mat-label>Attached Document No</mat-label>
+                                <input matInput type="text" readonly [value]="gateIn?.gateOut?.attachedDocumentNo">
+                            </mat-form-field>
+        
+                            <div class="download-form-field mb-1" *ngIf=" gateIn && gateIn.gateOut && gateIn.gateOut.attachmentSavePath && gateIn.gateOut.attachmentSavePath !== ''">
+                                <a target="_blank" mat-flat-button color="primary" type="button"
+                                [href]="goDownloadPath + '/' + gateIn.gateOut.attachmentSavePath">
+                                    <mat-icon>download</mat-icon>
+                                    Download
+                                </a>
+                                &nbsp;
+                                <!-- {{attachmentName}} -->
+                            </div>
+            
+                            <div class="download-form-field"></div>
+                            <div class="download-form-field"></div>
+                            <div class="download-form-field"></div>
+                            <div class="download-form-field"></div>
+                            <div class="download-form-field"></div>
+
+                        </div><!--End of: Form Fields Section-->
+                
+                    </mat-expansion-panel>
+                </mat-accordion>
+                      
+            </mat-card-content>
+
+            <mat-card-actions align="end">
+                <a mat-raised-button color="accent" routerLink="..">Back</a>
+            </mat-card-actions>
+        
+            <mat-card-footer>
+                <mat-progress-bar [mode]="loading ? 'indeterminate' : 'determinate'" value="100"></mat-progress-bar>
+            </mat-card-footer>
+        </mat-card>
+    </div>
+
+</div>

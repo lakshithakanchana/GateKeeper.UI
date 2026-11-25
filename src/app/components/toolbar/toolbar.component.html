@@ -1,0 +1,64 @@
+<mat-toolbar>
+    <button mat-icon-button>
+     <mat-icon>menu</mat-icon>
+   </button>
+   <span>GateKeeper</span>
+   <button mat-icon-button>
+     <mat-icon>favorite</mat-icon>
+   </button>
+   <button mat-icon-button>
+    <mat-icon>share</mat-icon>
+  </button>
+ </mat-toolbar>
+<mat-toolbar color="primary" class="primary-toolbar mat-elevation-z2">
+
+    <mat-toolbar-row>
+
+        <button *ngIf="loginStatus" mat-icon-button (click)="onMenuButtonClick()">
+            <mat-icon>menu</mat-icon>
+        </button>
+
+        <span>GateKeeper</span>
+
+        <span class="toolbar-spacer"></span>
+        
+        <!-- User Button -->
+        <ng-container *ngIf="loginStatus; else loginBtnRef">
+            <ng-container *ngIf="compressToolbar; else expanedBtnSet">
+                <button type="button" mat-button [matMenuTriggerFor]="menu">
+                    {{user}}
+                    <mat-icon iconPositionEnd>expand_more</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button type="button" *ngIf="loginStatus; else loginBtnRef" mat-button (click)="onLoginLogoutButtonClick()"
+                    matTooltip="Logout" class="login-logout-button">
+                        Logout
+                        <mat-icon>logout</mat-icon>
+                    </button>
+                </mat-menu>
+            </ng-container>
+        </ng-container>
+
+        <ng-template #loginBtnRef>
+            <button mat-button (click)="onLoginLogoutButtonClick()"
+            matTooltip="Login" class="login-logout-button">
+                Login
+                <mat-icon>login</mat-icon>
+            </button>
+        </ng-template>
+
+    </mat-toolbar-row>
+
+    <ng-template #expanedBtnSet>
+        <button type="button" mat-button class="mr-1">
+            {{user}}
+            <mat-icon>person</mat-icon>
+        </button>
+        <button type="button" *ngIf="loginStatus; else loginBtnRef" mat-button (click)="onLoginLogoutButtonClick()"
+        matTooltip="Logout" class="login-logout-button">
+            Logout
+            <mat-icon>logout</mat-icon>
+        </button>
+    </ng-template>
+
+</mat-toolbar>

@@ -1,0 +1,48 @@
+.container {
+    margin: 3rem 1rem 6rem 1rem;
+}
+
+.header-card, .footer-card {
+    margin-bottom: 1rem;
+}
+
+.app-desc {
+    text-align: justify;
+}
+
+.center {
+    text-align: center;
+}
+
+.mr-1 {
+    margin-right: 1rem;
+}
+
+.pt-0p5 {
+    padding-top: 0.5rem;
+}
+
+.bold {
+    font-weight: 550;
+}
+
+.nav-cards-container {
+    max-width: 70rem;
+    margin-bottom: 1rem;
+    margin-right: -1rem;
+    margin-left: -1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.nav-cards-container > mat-card {
+    max-width: 30rem;
+    min-width: 14rem;
+    margin: 1rem;
+    flex: 10rem 1 1;
+}
+
+.dev-details {
+    display: inline-flex;
+}

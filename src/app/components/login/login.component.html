@@ -1,0 +1,49 @@
+<div class="container">
+    <div>
+
+        <div class="errors-summary-container" *ngIf="errorsSummary !== null">
+            <app-errors-summary [errorsSummary]="errorsSummary!">
+            </app-errors-summary>
+        </div>
+
+        <form [formGroup]="loginForm" (ngSubmit)="onLogInClick()" class="loginForm">
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-title>Sign In</mat-card-title>
+                        <mat-card-subtitle>Gate Keeper</mat-card-subtitle>
+                    </mat-card-header>
+                
+                    <!-- Content here -->
+                    <mat-card-content>
+                        <mat-form-field>
+                            <mat-label>Username</mat-label>
+                            <input matInput type="text" formControlName="username">
+                            <mat-icon matSuffix>person</mat-icon>
+                            <mat-error *ngIf="this.loginForm.get('username')?.invalid && this.loginForm.get('username')?.touched">
+                                {{this.cFValidatorsSvc.getErrorMessage(this.loginForm.get('username'))}}
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Password</mat-label>
+                            <input matInput [type]="hidePass ? 'password' : 'text'" formControlName="password">
+                            <button type="button" mat-icon-button matSuffix (click)="hidePass = !hidePass">
+                                <mat-icon matSuffix>{{hidePass ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                            <mat-error *ngIf="this.loginForm.get('password')?.invalid && this.loginForm.get('password')?.touched">
+                                {{this.cFValidatorsSvc.getErrorMessage(this.loginForm.get('password'))}}
+                            </mat-error>
+                        </mat-form-field>
+                    </mat-card-content>
+                
+                    <mat-card-actions align="end">
+                        <button type="submit" mat-raised-button color="primary">Login</button>
+                    </mat-card-actions>
+                
+                    <mat-card-footer>
+                        <mat-progress-bar [mode]="loading ? 'indeterminate' : 'determinate'"></mat-progress-bar>
+                    </mat-card-footer>
+                </mat-card>
+        </form>
+
+    </div>
+</div>

@@ -1,0 +1,85 @@
+<div class="container">
+
+    <div class="errors-summary-container" *ngIf="errorsSummary !== null;">
+        <app-errors-summary [errorsSummary]="errorsSummary!">
+        </app-errors-summary>
+    </div>
+
+    <form [formGroup]="formQr" (ngSubmit)="onSubmitClick()" class="qr-code-form">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>QR Code - Create New</mat-card-title>
+                <mat-card-subtitle>QR Management</mat-card-subtitle>
+            </mat-card-header>
+        
+            <!-- Content here -->
+            <mat-card-content>
+
+                <div class="form-field-container">
+                    <mat-form-field>
+                        <mat-label>Current Location</mat-label>
+                        <mat-select formControlName="currentLocationId">
+                            <mat-option *ngFor="let cl of this.currentLocations" [value]="cl.locationId">
+                                {{cl.locationName}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="this.formQr.get('currentLocationId')?.invalid && this.formQr.get('currentLocationId')?.touched">
+                            <b>{{this.cFValidatorsSvc.getErrorMessage(this.formQr.get('currentLocationId'))}}</b>
+                        </mat-error>
+                    </mat-form-field>
+    
+                    <mat-form-field>
+                        <mat-label>Item Ref. No / Reel Code</mat-label>
+                        <input matInput type="text" formControlName="itemRefNo">
+                        <mat-error *ngIf="this.formQr.get('itemRefNo')?.invalid && this.formQr.get('itemRefNo')?.touched">
+                            <b>{{this.cFValidatorsSvc.getErrorMessage(this.formQr.get('itemRefNo'))}}</b>
+                        </mat-error>
+                    </mat-form-field>
+    
+                    <mat-form-field>
+                        <mat-label>Qty</mat-label>
+                        <input matInput type="number" formControlName="qty">
+                        <mat-error *ngIf="this.formQr.get('qty')?.invalid && this.formQr.get('qty')?.touched">
+                            <b>{{this.cFValidatorsSvc.getErrorMessage(this.formQr.get('qty'))}}</b>
+                        </mat-error>
+                    </mat-form-field>
+    
+                    <div class="form-field-place-holder"></div>
+                    <div class="form-field-place-holder"></div>
+                    <div class="form-field-place-holder"></div>
+                    <div class="form-field-place-holder"></div>
+                </div>
+
+                <div class="form-field-container">
+                    <mat-form-field>
+                        <mat-label>Item Specifications</mat-label>
+                        <textarea matInput rows="3" formControlName="itemSpecs"
+                            placeholder="Insert clear information to uniquely identify the item/reel.">
+                        </textarea>
+                        <mat-hint>
+                            <b>Shift</b> + <b>Enter</b> for new lines.
+                        </mat-hint>
+                        <mat-error *ngIf="this.formQr.get('itemSpecs')?.invalid && this.formQr.get('itemSpecs')?.touched">
+                            <b>{{this.cFValidatorsSvc.getErrorMessage(this.formQr.get('itemSpecs'))}}</b>
+                        </mat-error>
+                    </mat-form-field>
+                    <div class="form-field-place-holder"></div>
+                    <div class="form-field-place-holder"></div>
+                    <div class="form-field-place-holder"></div>
+                    <div class="form-field-place-holder"></div>
+                </div>
+                
+            </mat-card-content>
+        
+            <mat-card-actions align="end">
+                <a mat-raised-button color="accent" routerLink="../">Back</a>
+                <button type="submit" mat-raised-button color="primary">Save</button>
+            </mat-card-actions>
+        
+            <mat-card-footer>
+                <mat-progress-bar [mode]="loading ? 'indeterminate' : 'determinate'"></mat-progress-bar>
+            </mat-card-footer>
+        </mat-card>
+    </form>
+
+</div>

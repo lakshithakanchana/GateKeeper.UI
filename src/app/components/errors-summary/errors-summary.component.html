@@ -1,0 +1,15 @@
+<mat-card class="errors-summary">
+    <mat-card-header>
+        <mat-card-title>Error</mat-card-title>
+        <mat-card-subtitle>{{errorsSummary.errorCode | number : '3.0-0'}} - {{errorsSummary.errorCodeDesc | titlecase}}</mat-card-subtitle>
+    </mat-card-header>
+    <!-- Content here -->
+    <mat-card-content>
+        <mat-list>
+            <mat-list-item *ngFor="let error of errorsSummary.errors">
+                <mat-icon matListItemIcon>error</mat-icon>
+                <div matListItemTitle>{{error}}</div>
+            </mat-list-item>
+        </mat-list>
+    </mat-card-content>
+</mat-card>

@@ -1,0 +1,175 @@
+<div class="container">
+
+    <div class="errors-summary-container" *ngIf="errorsSummary !== null;">
+        <app-errors-summary [errorsSummary]="errorsSummary!">
+        </app-errors-summary>
+    </div>
+
+    <form [formGroup]="formGO" (ngSubmit)="onSubmitClick()" class="gate-out-form">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>Gate Out - Create New</mat-card-title>
+                <mat-card-subtitle>Inter Location Transfer</mat-card-subtitle>
+            </mat-card-header>
+        
+            <!-- Content here -->
+            <mat-card-content class="form-field-container">
+
+                <mat-form-field>
+                    <mat-label>Company</mat-label>
+                    <mat-select formControlName="companyId">
+                        <mat-option *ngFor="let c of this.companies" [value]="c.companyId">
+                            {{c.companyName}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="this.formGO.get('companyId')?.invalid && this.formGO.get('companyId')?.touched">
+                        <b>{{this.cFValidatorsSvc.getErrorMessage(this.formGO.get('companyId'))}}</b>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>From Location</mat-label>
+                    <mat-select formControlName="fromLocationId">
+                        <mat-option *ngFor="let fl of this.fromLocations" [value]="fl.locationId">
+                            {{fl.locationName}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="this.formGO.get('fromLocationId')?.invalid && this.formGO.get('fromLocationId')?.touched">
+                        <b>{{this.cFValidatorsSvc.getErrorMessage(this.formGO.get('fromLocationId'))}}</b>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>To Location</mat-label>
+                    <mat-select formControlName="toLocationId">
+                        <mat-option *ngFor="let tl of this.toLocations" [value]="tl.locationId">
+                           {{tl.locationName}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="this.formGO.get('toLocationId')?.invalid && this.formGO.get('toLocationId')?.touched">
+                        <b>{{this.cFValidatorsSvc.getErrorMessage(this.formGO.get('toLocationId'))}}</b>
+                    </mat-error>
+                </mat-form-field>
+
+                <input type="hidden" formControlName="createdUserId">
+
+                <mat-form-field>
+                    <mat-label>Vehicle No</mat-label>
+                    <mat-select formControlName="vehicleNo">
+                        <mat-option *ngFor="let v of vehicles" [value]="v">
+                            {{v}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="this.formGO.get('vehicleNo')?.invalid && this.formGO.get('vehicleNo')?.touched">
+                        <b>{{this.cFValidatorsSvc.getErrorMessage(this.formGO.get('vehicleNo'))}}</b>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Driver EPF No</mat-label>
+                    <mat-select formControlName="driverEpfNo" (selectionChange)="onDriverEpfChange($event)">
+                        <mat-option *ngFor="let driver of drivers" [value]="driver.epf">
+                            {{driver.epf}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="this.formGO.get('driverEpfNo')?.invalid && this.formGO.get('driverEpfNo')?.touched">
+                        <b>{{this.cFValidatorsSvc.getErrorMessage(this.formGO.get('driverEpfNo'))}}</b>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Driver Name</mat-label>
+                    <mat-select formControlName="driverName" (selectionChange)="onDriverNameChange($event)">
+                        <mat-option *ngFor="let driver of drivers" [value]="driver.name">
+                            {{driver.name}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="this.formGO.get('driverName')?.invalid && this.formGO.get('driverName')?.touched">
+                        <b>{{this.cFValidatorsSvc.getErrorMessage(this.formGO.get('driverName'))}}</b>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Document Type</mat-label>
+                    <mat-select formControlName="documentTypeId">
+                        <mat-option *ngFor="let dt of this.documentTypes" [value]="dt.documentTypeId">
+                            {{dt.documentTypeName}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="this.formGO.get('documentTypeId')?.invalid && this.formGO.get('documentTypeId')?.touched">
+                        <b>{{this.cFValidatorsSvc.getErrorMessage(this.formGO.get('documentTypeId'))}}</b>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Attached Document No</mat-label>
+                    <input matInput type="text" formControlName="attachedDocumentNo">
+                    <mat-error *ngIf="this.formGO.get('attachedDocumentNo')?.invalid && this.formGO.get('attachedDocumentNo')?.touched">
+                        <b>{{this.cFValidatorsSvc.getErrorMessage(this.formGO.get('attachedDocumentNo'))}}</b>
+                    </mat-error>
+                </mat-form-field>
+
+                <div class="upload-form-field mb-1">
+                    <input #fileInput hidden="true" type="file" (change)="fileInputChange($event)" accept="application/pdf, image/*"/>
+                    <button type="button" mat-flat-button color="primary" (click)="fileInput.click()">
+                        <mat-icon>attach_file</mat-icon>
+                        Attach
+                    </button>
+                    &nbsp;
+                    {{attachment?.name}}
+                </div>
+
+                <div class="upload-form-field"></div>
+                <div class="upload-form-field"></div>
+                <div class="upload-form-field"></div>
+                <div class="upload-form-field"></div>
+
+                <!-- Qr Codes List -->
+                <mat-card class="qr-codes-list-card">
+                    <mat-card-content class="draggable-boundry">
+                        <mat-card-header>
+                            <mat-card-title>QR Codes</mat-card-title>
+                            <mat-card-subtitle>Scaned qr codes</mat-card-subtitle>
+                        </mat-card-header> 
+
+                        <div class="qr-list" formArrayName="qrCodeIds">
+
+                            <ng-container *ngFor="let qrc of this.qrCodes; index as i">
+                                <app-qr-code-list-item [title]="qrc.itemRefNo"
+                                [id]="qrc.qrCodeId" [desc]="qrc.itemSpecs" (delete)="onQrCodeListItemDelete(qrc.qrCodeId)">
+                                </app-qr-code-list-item>
+                                <input type="hidden" [value]="qrc.qrCodeId" [formControlName]="i">
+                            </ng-container>
+                            <p *ngIf="this.qrCodes.length <= 0">--- There are no QR Codes scanned yet! ---</p>
+
+                        </div>
+
+                        <ng-container *ngIf="this.formGO.get('qrCodeIds')?.invalid">
+                            <mat-divider></mat-divider>
+                            <mat-error>
+                                <b>At least, one qr code should be there!</b>
+                            </mat-error>
+                        </ng-container>
+
+                        <button type="button" mat-fab color="primary" class="floating-fab" cdkDrag
+                        cdkDragBoundary=".draggable-boundry" matTooltip="Scan QR" (click)="openQrScanDialog()">
+                            <mat-icon>qr_code_2_add</mat-icon>
+                        </button>
+
+                    </mat-card-content>
+                </mat-card>
+                      
+            </mat-card-content>
+        
+            <mat-card-actions align="end">
+                <a mat-raised-button color="accent" routerLink="../">Back</a>
+                <button type="submit" mat-raised-button color="primary">Save</button>
+            </mat-card-actions>
+        
+            <mat-card-footer>
+                <mat-progress-bar [mode]="loading ? 'indeterminate' : 'determinate'"></mat-progress-bar>
+            </mat-card-footer>
+        </mat-card>
+    </form>
+
+</div>

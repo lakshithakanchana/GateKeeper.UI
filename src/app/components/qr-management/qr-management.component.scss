@@ -1,0 +1,9 @@
+.tab-nav-bar {
+    display: flex;
+}
+
+@media only screen and (max-width: 375px) {
+    .hide-at-mobile-screens {
+        display: none;
+    }
+}

@@ -1,0 +1,86 @@
+.container {
+    margin: 3rem 1rem;
+}
+
+.errors-summary-container, .gate-in-form {
+    margin-bottom: 1rem;
+}
+
+mat-form-field {
+    min-width: 10rem;
+    max-width: 25rem;
+    margin-right: 1rem;
+    flex: 1 1 15rem;
+}
+
+.download-form-field {
+    display: inline-block;
+    min-width: 10rem;
+    max-width: 25rem;
+    margin-right: 1rem;
+    flex: 1 1 15rem;
+}
+
+.accordination-headers-align {
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 1rem;
+}
+
+.form-field-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-right: -1rem;
+}
+
+.remarks-form-field-container {
+    display: flex;
+    justify-content: center;
+    margin-right: -1rem;
+}
+
+.remarks-form-field {
+    max-width: none;
+    width: 100%;
+}
+
+.qr-codes-list-card {
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.qr-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.qr-list > p {
+    text-align: center;
+    margin: 1rem auto;
+}
+
+.floating-fab {
+    position: absolute;
+    right: 3rem;
+    bottom: 2rem;
+}
+
+.mb-1 {
+    margin-bottom: 1rem;
+}
+
+a {
+    margin-right: 1rem;
+}
+
+@media only screen and (max-width: 600px) {
+    .hideAtMobileSSize {
+        display: none;
+    }
+}
+
+mat-expansion-panel-header {
+    height: auto;
+    min-height: 3rem;
+}

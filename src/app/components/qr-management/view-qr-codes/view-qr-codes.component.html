@@ -1,0 +1,90 @@
+<div class="container">
+
+    <div class="qr-code-form">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>QR Code - View</mat-card-title>
+                <mat-card-subtitle>QR Management</mat-card-subtitle>
+            </mat-card-header>
+        
+            <!-- Content here -->
+            <mat-card-content>
+
+                <div class="form-field-container">
+                    <mat-form-field>
+                        <mat-label>QR ID</mat-label>
+                        <input matInput type="text" readonly [value]="qrCode?.qrCodeId">
+                    </mat-form-field>
+                    
+                    <mat-form-field>
+                        <mat-label>Created User</mat-label>
+                        <input matInput type="text" readonly [value]="qrCode?.createdUser?.username">
+                    </mat-form-field>
+                    
+                    <mat-form-field>
+                        <mat-label>Created Time</mat-label>
+                        <input matInput type="datetime-local" readonly [value]="qrCode?.createdDateTime | date: 'yyyy-MM-ddTHH:mm:ss'">
+                    </mat-form-field>
+                    
+                    <mat-form-field>
+                        <mat-label>Current Location</mat-label>
+                        <input matInput type="text" readonly [value]="qrCode?.currentLocation?.locationName">
+                    </mat-form-field>
+    
+                    <mat-form-field>
+                        <mat-label>Item Ref. No / Reel Code</mat-label>
+                        <input matInput type="text" readonly [value]="qrCode?.itemRefNo">
+                    </mat-form-field>
+    
+                    <mat-form-field>
+                        <mat-label>Qty</mat-label>
+                        <input matInput type="text" readonly [value]="qrCode?.qty">
+                    </mat-form-field>
+    
+                    <div class="form-field-place-holder"></div>
+                    <div class="form-field-place-holder"></div>
+                    <div class="form-field-place-holder"></div>
+                    <div class="form-field-place-holder"></div>
+                </div>
+
+                <div class="form-field-container">
+                    <mat-form-field>
+                        <mat-label>Item Specifications</mat-label>
+                        <textarea matInput rows="3" readonly [value]="qrCode?.itemSpecs"></textarea>
+                    </mat-form-field>
+                    <div class="form-field-place-holder"></div>
+                    <div class="form-field-place-holder"></div>
+                    <div class="form-field-place-holder"></div>
+                    <div class="form-field-place-holder"></div>
+                </div>
+
+                <div>
+                    <mat-checkbox [checked]="qrCode?.active"
+                    [disableRipple]="true"
+                    (click)="$event.preventDefault()">
+                        Active
+                    </mat-checkbox>
+                </div>
+                
+            </mat-card-content>
+        
+            <mat-card-actions align="end">
+                <a mat-raised-button color="accent" class="mr-1" routerLink="../../Index">Back</a>
+                <a mat-raised-button color="accent" routerLink="../../New">
+                    <mat-icon>add</mat-icon>
+                    New
+                </a>
+                <button type="button" mat-raised-button
+                color="primary" (click)="openQrPrintDialog()">
+                    <mat-icon fontIcon="print"></mat-icon>
+                    Print QR
+                </button>
+            </mat-card-actions>
+        
+            <mat-card-footer>
+                <mat-progress-bar [mode]="loading ? 'indeterminate' : 'determinate'" value="100"></mat-progress-bar>
+            </mat-card-footer>
+        </mat-card>
+    </div>
+
+</div>

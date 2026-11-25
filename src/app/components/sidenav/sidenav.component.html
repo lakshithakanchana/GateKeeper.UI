@@ -1,0 +1,30 @@
+<mat-drawer-container fullscreen>
+
+    <mat-drawer #drawer mode="over">
+      <mat-nav-list>
+        <div mat-subheader>GateKeeper</div>
+        <a mat-list-item routerLink="/Home" class="right-border-spacing" routerLinkActive="link-selected"
+        #homeRef="routerLinkActive" [activated]="homeRef.isActive">
+          <mat-icon matListItemIcon>home</mat-icon>
+          <div matListItemTitle>Home</div>
+        </a>
+        <a *ngIf="this.haveStoreKeeperRole" mat-list-item routerLink="/Qr-Management" class="right-border-spacing" routerLinkActive="link-selected"
+        #qrcMngRef="routerLinkActive" [activated]="qrcMngRef.isActive">
+          <mat-icon matListItemIcon>qr_code_2</mat-icon>
+          <div matListItemTitle>Qr Code Management</div>
+        </a>
+        <a *ngIf="this.haveSecurityOfficerRole" mat-list-item routerLink="/Inter-Location-Transfer" class="right-border-spacing" routerLinkActive="link-selected"
+        #iltMng="routerLinkActive" [activated]="iltMng.isActive">
+          <mat-icon matListItemIcon>local_shipping</mat-icon>
+          <div matListItemTitle>Inter Location Transfer</div>
+        </a>
+      </mat-nav-list>
+    </mat-drawer>
+  
+    <mat-drawer-content>
+        <!-- Toolbar and its content -->
+        <app-toolbar (menuButtonClick)="drawer.toggle()"></app-toolbar>
+        <router-outlet></router-outlet>
+    </mat-drawer-content>
+  
+</mat-drawer-container>  

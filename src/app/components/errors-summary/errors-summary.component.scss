@@ -1,0 +1,18 @@
+.errors-summary {
+    mat-card-title, .mat-mdc-list-item-title, .mat-icon {
+        color: #dd1111;
+    }
+    mat-card-subtitle {
+        color: #dd3333;
+    }
+    background-color: #ffdddd;
+}
+
+::ng-deep .mdc-list-item__primary-text {
+    word-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+.mat-mdc-list-item {
+    height: auto !important;
+}

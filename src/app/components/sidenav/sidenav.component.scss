@@ -1,0 +1,10 @@
+/* my-component.scss */
+@import "@angular/material/theming";
+@import '/src/variables.scss';
+
+.right-border-spacing {
+    border-right: 2px solid transparent;
+}
+.link-selected {
+    border-right: 4px solid mat-color($primaryPalette);
+}

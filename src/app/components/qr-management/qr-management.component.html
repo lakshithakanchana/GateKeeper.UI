@@ -1,0 +1,25 @@
+<nav mat-tab-nav-bar class="tab-nav-bar" [tabPanel]="qrMtabPanel">
+    <a mat-tab-link
+        routerLink="Index"
+        routerLinkActive #qrL="routerLinkActive"
+        [active]="qrL.isActive"
+    >
+        <mat-icon fontIcon="list"></mat-icon><span class="hide-at-mobile-screens">&nbsp;&nbsp;List</span>
+    </a>
+    <a mat-tab-link
+        routerLink="New"
+        routerLinkActive #qrC="routerLinkActive"
+        [active]="qrC.isActive"
+    >
+        <mat-icon fontIcon="add_circle"></mat-icon><span class="hide-at-mobile-screens">&nbsp;&nbsp;Create</span>
+    </a>
+    <a mat-tab-link
+        routerLink="View"
+        routerLinkActive #qrV="routerLinkActive"
+        [active]="qrV.isActive"
+    >
+        <mat-icon fontIcon="visibility"></mat-icon><span class="hide-at-mobile-screens">&nbsp;&nbsp;View</span>
+    </a>
+</nav>
+<mat-tab-nav-panel #qrMtabPanel></mat-tab-nav-panel>
+<router-outlet></router-outlet>

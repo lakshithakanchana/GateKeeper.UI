@@ -1,0 +1,128 @@
+<div class="container">
+
+    <!--Header Card-->
+    <mat-card class="header-card">
+        <mat-card-header>
+            <mat-card-title>Gate In - Index</mat-card-title>
+            <mat-card-subtitle class="main-subtitle">
+                Inter Location Transfer
+            </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-actions>
+            <a mat-raised-button color="primary"matTooltip="Scan QR" (click)="openQrScanDialog()" class="mr-1">
+                <mat-icon fontIcon="qr_code_scanner"></mat-icon>
+                Scan QR
+            </a>
+            <button mat-raised-button color="primary" matTooltip="Export as CSV" (click)="exportCsv()">
+                <mat-icon fontIcon="download"></mat-icon>
+                CSV
+            </button>
+            <span class="grow"></span>
+            <button mat-icon-button (click)="refreshGateInsList()" matTooltip="Refresh">
+                <mat-icon>refresh</mat-icon>
+            </button>
+          </mat-card-actions>
+    </mat-card>
+
+    <div class="errors-summary-container" *ngIf="errorsSummary !== null; else tableRef">
+        <app-errors-summary [errorsSummary]="errorsSummary!">
+        </app-errors-summary>
+    </div>
+
+    <ng-template #tableRef>
+
+        <form [formGroup]="filterForm" class="filters-container">
+            <mat-form-field class="date-range-filter">
+                <mat-label>Date range (Gt.In)</mat-label>
+                <mat-date-range-input [rangePicker]="dateRangePicker">
+                    <input matStartDate placeholder="From" formControlName="fromDate">
+                    <input matEndDate placeholder="To" formControlName="toDate" (dateChange)="applyDateRangeFilter()">
+                </mat-date-range-input>
+                <mat-datepicker-toggle matIconSuffix [for]="dateRangePicker"></mat-datepicker-toggle>
+                <mat-date-range-picker #dateRangePicker></mat-date-range-picker>
+            </mat-form-field>
+        
+            <mat-form-field class="text-filter">
+                <mat-label>Search</mat-label>
+                <input matInput (keyup)="applyFilter($event)" #input>
+                <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+        </form>
+    
+        <div class="mat-table-container">
+            <table mat-table [dataSource]="dataSource" matSort>
+            
+                <ng-container matColumnDef="giid">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Gt.In&nbsp;ID </th>
+                <td mat-cell *matCellDef="let row"> {{row.giid}} </td>
+                </ng-container>
+            
+                <ng-container matColumnDef="goid">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Gt.Out&nbsp;ID </th>
+                <td mat-cell *matCellDef="let row"> {{row.goid}} </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="qrcid">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> QR&nbsp;ID </th>
+                <td mat-cell *matCellDef="let row"> {{row.qrcid}} </td>
+                </ng-container>
+            
+                <ng-container matColumnDef="itemRefNo">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> <span class="no-wrap">Item Ref / Reel Code</span> </th>
+                <td mat-cell *matCellDef="let row"> {{row.itemRefNo}} </td>
+                </ng-container>
+            
+                <ng-container matColumnDef="location">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Location </th>
+                <td mat-cell *matCellDef="let row" class="no-wrap"> {{row.location}} </td>
+                </ng-container>
+            
+                <ng-container matColumnDef="gateOutDateTime">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Gt.Out&nbsp;Date/Time </th>
+                <td mat-cell *matCellDef="let row" class="no-wrap"> {{row.gateOutDateTime | date: 'dd MMM y h:mm a'}} </td>
+                </ng-container>
+            
+                <ng-container matColumnDef="gateInDateTime">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Gt.In&nbsp;Date/Time </th>
+                <td mat-cell *matCellDef="let row" class="no-wrap"> {{row.gateInDateTime | date: 'dd MMM y h:mm a'}} </td>
+                </ng-container>
+            
+                <ng-container matColumnDef="delay">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Delay(Minutes) </th>
+                <td mat-cell *matCellDef="let row" class="no-wrap"> {{row.delay}} (m) </td>
+                </ng-container>
+            
+                <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
+                <td mat-cell *matCellDef="let row" class="no-wrap">
+                    <a mat-raised-button color="accent" [routerLink]="'../Gate-Out/'+row.goid" class="mr-1">
+                        <mat-icon fontIcon="undo"></mat-icon>
+                        View Gt.Out
+                    </a>
+                    <a mat-raised-button color="primary" [routerLink]="row.giid">
+                        <mat-icon fontIcon="output"></mat-icon>
+                        View Gt.In
+                    </a>
+                </td>
+                </ng-container>
+            
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            
+                <!-- Row shown when there is no matching data. -->
+                <tr class="mat-row" *matNoDataRow>
+                    <td colspan="8"><div class="txt-center">No data matching the filter "{{input.value}}"</div></td>
+                </tr>
+
+            </table>
+        </div>
+    
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+
+    </ng-template>
+
+</div>
+<button mat-fab color="primary" class="floating-fab" cdkDrag
+matTooltip="Scan QR" (click)="openQrScanDialog()">
+    <mat-icon>qr_code_scanner</mat-icon>
+</button>

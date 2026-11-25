@@ -1,0 +1,62 @@
+.container {
+    margin: 3rem 1rem;
+}
+
+.errors-summary-container, .qr-code-form {
+    margin-bottom: 1rem;
+}
+
+mat-form-field {
+    min-width: 10rem;
+    max-width: 25rem;
+    margin-right: 1rem;
+    flex: 1 1 15rem;
+}
+
+.form-field-place-holder {
+    display: inline-block;
+    min-width: 10rem;
+    max-width: 25rem;
+    margin-right: 1rem;
+    flex: 1 1 15rem;
+}
+
+.form-field-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-right: -1rem;
+}
+
+.qr-codes-list-card {
+    width: 100%;
+    margin-right: 1rem;
+}
+
+.qr-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.qr-list > p {
+    text-align: center;
+    margin: 1rem auto;
+}
+
+.floating-fab {
+    position: absolute;
+    right: 3rem;
+    bottom: 3rem;
+}
+
+.mb-1 {
+    margin-bottom: 1rem;
+}
+
+.mr-1 {
+    margin-right: 1rem;
+}
+
+a {
+    margin-right: 1rem;
+}

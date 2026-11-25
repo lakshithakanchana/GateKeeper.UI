@@ -1,0 +1,93 @@
+<div class="container">
+
+    <!--Header Card-->
+    <mat-card class="header-card">
+        <mat-card-header>
+            <mat-card-title>GateKeeper: Home</mat-card-title>
+            <mat-card-subtitle class="main-subtitle">
+                Korean SPA Packaging (PVT) Ltd.
+            </mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+            <p class="app-desc pt-0p5">
+                Introducing <span class="bold">GateKeeper</span>: to streamline the item movement between factories at <span class="bold">KSPA</span> Permisis.
+            </p>
+        </mat-card-content>
+
+        <mat-card-actions align="end">
+            <a mat-icon-button routerLink="/Inter-Location-Transfer" class="mr-1">
+                <mat-icon fontIcon="local_shipping" matTooltip="Locational Transfer"></mat-icon>
+            </a>
+            <a mat-icon-button routerLink="/Qr-Management">
+                <mat-icon fontIcon="qr_code_2" matTooltip="Qr Management"></mat-icon>
+            </a>
+          </mat-card-actions>
+    </mat-card>
+
+    <div class="nav-cards-container">
+
+        <mat-card *ngIf="this.haveSecurityOfficerRole">
+            <mat-card-header>
+                <mat-card-title>Inter Locational Transfer Module</mat-card-title>
+                <mat-card-subtitle>Allowed Users: Security Officers & Administrators</mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image src="assets/images/cargo-transportation.jpg" alt="Photo of a Shiba Inu">
+            <mat-card-content class="pt-0p5">
+                Streamline item movement with <span class="bold">gate issue creation</span>, <span class="bold">in-transit item tracking</span>, and <span class="bold">gate receiving creation</span>.
+            </mat-card-content>
+            <mat-card-actions align="end">
+                <button mat-raised-button color="primary" routerLink="/Inter-Location-Transfer">Go</button>
+            </mat-card-actions>
+        </mat-card>
+
+        <mat-card *ngIf="this.haveStoreKeeperRole">
+            <mat-card-header>
+                <mat-card-title>QR Management Module</mat-card-title>
+                <mat-card-subtitle>Allowed Users: Store Keepers & Administrators</mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image src="assets/images/qr-code-scan.jpg" alt="Photo of a Shiba Inu">
+            <mat-card-content class="pt-0p5">
+                Here you can <span class="bold">generate</span>, <span class="bold">print</span>, <span class="bold">track QR code history</span> such as created user, date-time effortlessly.
+            </mat-card-content>
+            <mat-card-actions align="end">
+                <button mat-raised-button color="primary" routerLink="/Qr-Management">Go</button>
+            </mat-card-actions>
+        </mat-card>
+
+    </div>
+
+    <!--Footer Card-->
+    <mat-card class="footer-card">
+        <mat-card-header>
+            <mat-card-title>GateKeeper</mat-card-title>
+            <mat-card-subtitle class="main-subtitle">
+                Supply Chain Planning and Process Analysis Department, KSPA
+            </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="footer-card-content">
+            <p class="app-desc pt-0p5">
+                Introducing <span class="bold">GateKeeper</span>: A user-friendly mobile app developed by inhouse <span class="bold">Supply Chain Planning and Process Analysis Department</span> for <i>Korean SPA Packaging (PVT) Ltd</i> as a <span class="bold">Process Automation Project</span>. It simplifies gate pass management with <span class="bold">QR code generation</span> for item release and receipt, replacing the manual documentation.
+            </p>
+        </mat-card-content>
+        <mat-card-actions align="end">
+            <div class="dev-details">
+                <mat-list>
+                    <mat-list-item>
+                      <mat-icon matListItemIcon>code</mat-icon>
+                      <div matListItemTitle>KP Lakshitha</div>
+                      <div matListItemLine>Developed by</div>
+                    </mat-list-item>
+                  </mat-list>
+                  <mat-list>
+                      <mat-list-item>
+                        <mat-icon matListItemIcon>account_tree</mat-icon>
+                        <div matListItemTitle>Akila Fernando</div>
+                        <div matListItemLine>Consultation</div>
+                      </mat-list-item>
+                    </mat-list>
+            </div>
+        </mat-card-actions>
+    </mat-card>
+
+</div>

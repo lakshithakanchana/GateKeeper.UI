@@ -1,0 +1,33 @@
+<nav mat-tab-nav-bar class="tab-nav-bar" [tabPanel]="iltTabPanel">
+    <a mat-tab-link
+        routerLink="Gate-Out"
+        routerLinkActive #gorl="routerLinkActive"
+        [active]="gorl.isActive"
+    >
+        <mat-icon fontIcon="output"></mat-icon><span class="hide-at-mobile-screens">&nbsp;&nbsp;Gate Out</span>
+    </a>
+    <a mat-tab-link
+        routerLink="In-Transit"
+        routerLinkActive #itrl="routerLinkActive"
+        [active]="itrl.isActive"
+    >
+        <mat-icon fontIcon="local_shipping"></mat-icon><span class="hide-at-mobile-screens">&nbsp;&nbsp;In-Transit</span>
+    </a>
+    <a mat-tab-link
+        routerLink="Gate-In"
+        routerLinkActive #girl="routerLinkActive"
+        [active]="girl.isActive"
+    >
+        <mat-icon fontIcon="exit_to_app"></mat-icon><span class="hide-at-mobile-screens">&nbsp;&nbsp;Gate In</span>
+    </a>
+    <a mat-tab-link
+        routerLink="History"
+        routerLinkActive #hrl="routerLinkActive"
+        [active]="hrl.isActive"
+        class="history-tab-link"
+    >
+        <mat-icon fontIcon="history"></mat-icon>
+    </a>
+</nav>
+<mat-tab-nav-panel #iltTabPanel></mat-tab-nav-panel>
+<router-outlet></router-outlet>

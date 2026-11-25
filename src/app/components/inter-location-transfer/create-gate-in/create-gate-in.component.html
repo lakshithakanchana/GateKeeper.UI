@@ -1,0 +1,148 @@
+<div class="container">
+
+    <div class="errors-summary-container" *ngIf="errorsSummary !== null;">
+        <app-errors-summary [errorsSummary]="errorsSummary!">
+        </app-errors-summary>
+    </div>
+
+    <form [formGroup]="formGI" (ngSubmit)="onSubmitClick()" class="gate-in-form">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>Gate In - Create New</mat-card-title>
+                <mat-card-subtitle>Inter Location Transfer</mat-card-subtitle>
+            </mat-card-header>
+        
+            <!-- Content here -->
+            <mat-card-content>
+
+                <div class="form-field-container">
+                    <mat-form-field>
+                        <mat-label>Company</mat-label>
+                        <mat-select formControlName="companyId">
+                            <mat-option *ngFor="let c of this.companies" [value]="c.companyId">
+                                {{c.companyName}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="this.formGI.get('companyId')?.invalid && this.formGI.get('companyId')?.touched">
+                            <b>{{this.cFValidatorsSvc.getErrorMessage(this.formGI.get('companyId'))}}</b>
+                        </mat-error>
+                    </mat-form-field>
+    
+                    <mat-form-field>
+                        <mat-label>Gt.In Location</mat-label>
+                        <mat-select formControlName="locationId">
+                            <mat-option *ngFor="let l of this.locations" [value]="l.locationId">
+                                {{l.locationName}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="this.formGI.get('locationId')?.invalid && this.formGI.get('locationId')?.touched">
+                            <b>{{this.cFValidatorsSvc.getErrorMessage(this.formGI.get('locationId'))}}</b>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Reel Code / Item Ref</mat-label>
+                        <input matInput type="text" disabled [value]="qrCode?.itemRefNo">
+                    </mat-form-field>
+                    
+                    <div class="form-field-placeholder"></div>
+                </div>
+
+                <div class="go-data-form-field-container">
+                    <!--Gate Out Related Data-->
+                    <mat-accordion class="accordination-headers-align">
+                        <mat-expansion-panel>
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    Gate Out Related Data (In-bound)
+                                </mat-panel-title>
+                                <mat-panel-description>
+                                    <span class="hideAtMobileSSize">Expand to see more</span>
+                                </mat-panel-description>
+                            </mat-expansion-panel-header>
+                    
+                            <!--Form Fields Section-->
+                            <div class="form-field-container">
+
+                                <mat-form-field>
+                                    <mat-label>From Location</mat-label>
+                                    <input matInput type="text" disabled [value]="gateOut?.fromLocation?.locationName">
+                                </mat-form-field>
+                
+                                <input type="hidden" formControlName="qrCodeId">
+                                <input type="hidden" formControlName="createdUserId">
+            
+                                <mat-form-field>
+                                    <mat-label>Gt.Out Id</mat-label>
+                                    <input matInput type="text" disabled [value]="gateOut?.gateOutId">
+                                </mat-form-field>
+                
+                                <mat-form-field>
+                                    <mat-label>Vehicle No</mat-label>
+                                    <input matInput type="text" disabled [value]="gateOut?.vehicleNo">
+                                </mat-form-field>
+                
+                                <mat-form-field>
+                                    <mat-label>Driver EPF No</mat-label>
+                                    <input matInput type="text" disabled [value]="gateOut?.driverEpfNo">
+                                </mat-form-field>
+                
+                                <mat-form-field>
+                                    <mat-label>Driver Name</mat-label>
+                                    <input matInput type="text" disabled [value]="gateOut?.driverName">
+                                </mat-form-field>
+                
+                                <mat-form-field>
+                                    <mat-label>Document Type</mat-label>
+                                    <input matInput type="text" disabled [value]="gateOut?.documentType?.documentTypeName">
+                                </mat-form-field>
+                
+                                <mat-form-field>
+                                    <mat-label>Attached Document No</mat-label>
+                                    <input matInput type="text" disabled [value]="gateOut?.attachedDocumentNo">
+                                </mat-form-field>
+            
+                                <div class="download-form-field mb-1">
+                                    <button mat-flat-button color="primary" type="button">
+                                        <mat-icon>download</mat-icon>
+                                        Download
+                                    </button>
+                                    &nbsp;
+                                    {{'file_name_auto'}}
+                                </div>
+                
+                                <div class="download-form-field"></div>
+                                <div class="download-form-field"></div>
+                                <div class="download-form-field"></div>
+                                <div class="download-form-field"></div>
+
+                            </div><!--End of: Form Fields Section-->
+                    
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                </div>
+
+                <div class="remarks-form-field-container">
+                    <mat-form-field class="remarks-form-field">
+                        <mat-label>Remarks</mat-label>
+                        <textarea matInput rows="2" formControlName="remarks"></textarea>
+                        <mat-error *ngIf="this.formGI.get('remarks')?.invalid && this.formGI.get('remarks')?.touched">
+                            <b>{{this.cFValidatorsSvc.getErrorMessage(this.formGI.get('remarks'))}}</b>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                      
+            </mat-card-content>
+        
+            <mat-card-actions align="end">
+                <a mat-raised-button color="accent" routerLink="../..">Back</a>
+                <button type="submit" mat-raised-button color="primary">Save</button>
+            </mat-card-actions>
+        
+            <mat-card-footer>
+                <mat-progress-bar [mode]="loading ? 'indeterminate' : 'determinate'"></mat-progress-bar>
+            </mat-card-footer>
+        </mat-card>
+    </form>
+
+</div>

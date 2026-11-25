@@ -1,0 +1,13 @@
+.tab-nav-bar {
+    display: flex;
+}
+
+.history-tab-link {
+    flex: 0 1 auto !important;
+}
+
+@media only screen and (max-width: 520px) {
+    .hide-at-mobile-screens {
+        display: none;
+    }
+}

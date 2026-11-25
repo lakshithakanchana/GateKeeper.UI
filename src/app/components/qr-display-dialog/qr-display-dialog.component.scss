@@ -1,0 +1,48 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapper {
+    margin: 7.5mm 7.5mm;
+    padding: 2mm 5mm;
+    border: 1mm solid black;// Qrcode == 
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 1;
+}
+
+qrcode {
+    flex-shrink: 1;
+}
+
+.wrapper > b {
+    font-size: 3mm;
+    line-height: 3mm;
+}
+
+.wrapper > span {
+    font-size: 3mm;
+    line-height: 3mm;
+}
+
+.print-fab {
+    position: absolute;
+    right: 1em;
+    bottom: 1em;
+    animation-name: fadeInOut;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes fadeInOut {
+    from {opacity: 0.5;}
+    to   {opacity: 1;}
+}
+
+.hide {
+    display: none;
+}
